@@ -75,6 +75,11 @@
     .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
     .hero-note{margin-top:22px;color:#c2cbe6;font-size:.95rem;display:flex;gap:20px;flex-wrap:wrap}
     .hero-note span{display:flex;align-items:center;gap:7px}
+    /* hero QR */
+    .hero-top{display:flex;align-items:center;justify-content:space-between;gap:44px;flex-wrap:wrap}
+    .hero-qr{flex:none;text-align:center}
+    .hero-qr .qr-box img{width:158px;height:158px}
+    .hero-qr span{display:block;margin-top:12px;color:#cdd6f0;font-weight:600;font-size:.9rem}
 
     /* stats strip */
     .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:42px}
@@ -202,6 +207,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
+      <div class="hero-top">
       <div class="hero-inner">
         <span class="badge"><span class="dot"></span> Dirbame 24/7 · visas Kaunas ir rajonas</span>
         <h1>Sugedo automobilis? <span class="accent">Atvažiuosim per 30 min.</span></h1>
@@ -214,6 +220,11 @@
           <span>⚡ Greitas atvykimas</span>
           <span>💶 Fiksuota kaina iš anksto</span>
           <span>🛡️ Apdraustas pervežimas</span>
+        </div>
+      </div>
+        <div class="hero-qr reveal">
+          <div class="qr-box"><img src="images/qr.png" alt="QR kodas – atidaryti svetainę"></div>
+          <span>📷 Nuskenuok ir atidaryk</span>
         </div>
       </div>
 
