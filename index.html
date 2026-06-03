@@ -100,7 +100,7 @@
 
     /* gallery */
     .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--bg-soft)}
+    .shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;min-height:240px;background:var(--bg-soft)}
     .shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
     .shot:hover img{transform:scale(1.08)}
     .shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 14px;font-weight:600;font-size:.98rem;background:linear-gradient(transparent,rgba(6,9,18,.9));opacity:0;transform:translateY(8px);transition:.25s ease}
@@ -368,9 +368,14 @@
     burger.addEventListener('click',()=>menu.classList.toggle('open'));
     menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
     document.getElementById('year').textContent=new Date().getFullYear();
-    // reveal-on-scroll
-    const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
-    document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';io.observe(el)});
+    // reveal-on-scroll (su atsarginiu variantu senam Safari)
+    const reveals=document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+      reveals.forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';io.observe(el)});
+    } else {
+      reveals.forEach(el=>el.classList.add('in')); // jei nepalaikoma — viską parodom iškart
+    }
   </script>
 </body>
 </html>
