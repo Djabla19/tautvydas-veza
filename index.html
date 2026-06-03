@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tautvydas Veža — Automobilių pervežimas ir pagalba kelyje Kaune | 24/7</title>
+  <meta name="description" content="Sugedo automobilis Kaune? Tautvydas Veža atvažiuoja greitai — automobilių tralavimas, pagalba kelyje, akumuliatoriaus užvedimas, ratų keitimas. Dirbame 24/7." />
+
+  <!-- ====== ČIA REDAGUOK SAVO KONTAKTUS ======
+       Pakeisk telefono numerį: paieškok teksto  +370 600 00000  ir pakeisk visur į tikrą numerį.
+       (Jei nori, parašyk man numerį ir aš pakeisiu visur pats.)
+  ============================================ -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#080c18;
+      --bg-soft:#0e1426;
+      --card:#141d35;
+      --line:rgba(255,255,255,.09);
+      --txt:#eef2ff;
+      --muted:#9aa6c7;
+      --accent:#ffc31f;
+      --accent-2:#ff8a00;
+      --ok:#2ee6a6;
+      --radius:18px;
+      --maxw:1160px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    h1,h2,h3{font-family:'Sora','Inter',sans-serif;line-height:1.1;letter-spacing:-.02em}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+    .accent{color:var(--accent)}
+
+    /* reveal-on-scroll */
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:none}
+
+    /* buttons */
+    .btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.02rem;padding:15px 26px;border-radius:999px;border:0;cursor:pointer;transition:transform .15s ease,box-shadow .2s ease,background .2s ease;white-space:nowrap}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#1a1300;box-shadow:0 10px 30px rgba(255,160,0,.35)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(255,160,0,.55)}
+    .btn-ghost{background:rgba(255,255,255,.08);color:var(--txt);border:1px solid var(--line);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+    .btn-ghost:hover{background:rgba(255,255,255,.15)}
+
+    /* header */
+    header{position:sticky;top:0;z-index:50;background:rgba(8,12,24,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .logo{display:flex;align-items:center;gap:10px;font-family:'Sora';font-weight:800;font-size:1.45rem;letter-spacing:.02em}
+    .logo .mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-size:20px}
+    .nav-links{display:flex;gap:28px;align-items:center}
+    .nav-links a{color:var(--muted);font-weight:500;font-size:.97rem;transition:color .15s}
+    .nav-links a:hover{color:var(--txt)}
+    .nav .btn{padding:11px 20px;font-size:.95rem}
+    .burger{display:none;background:none;border:0;color:var(--txt);font-size:1.8rem;cursor:pointer}
+
+    /* hero with photo background */
+    .hero{position:relative;min-height:88vh;display:flex;align-items:center;
+      background:
+        linear-gradient(90deg, rgba(6,9,18,.96) 0%, rgba(6,9,18,.82) 42%, rgba(6,9,18,.45) 100%),
+        url('images/tralas-2.jpg') center/cover no-repeat;
+      padding:70px 0;}
+    .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(800px 400px at 75% 10%, rgba(255,160,0,.16), transparent 65%);pointer-events:none}
+    .hero-inner{position:relative;z-index:2;max-width:640px}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(46,230,166,.12);color:var(--ok);border:1px solid rgba(46,230,166,.3);padding:7px 14px;border-radius:999px;font-size:.85rem;font-weight:600;margin-bottom:22px}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(46,230,166,.2)}
+    .hero h1{font-size:clamp(2.4rem,5.6vw,4.1rem);font-weight:800;margin-bottom:18px}
+    .hero p.lead{font-size:1.2rem;color:#cdd6f0;max-width:560px;margin-bottom:30px}
+    .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+    .hero-note{margin-top:22px;color:#c2cbe6;font-size:.95rem;display:flex;gap:20px;flex-wrap:wrap}
+    .hero-note span{display:flex;align-items:center;gap:7px}
+
+    /* stats strip */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:42px}
+    .stat{background:rgba(10,14,28,.7);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:22px 18px;text-align:center}
+    .stat b{font-family:'Sora';font-weight:800;font-size:1.7rem;display:block;color:var(--accent)}
+    .stat span{color:var(--muted);font-size:.86rem}
+
+    /* sections */
+    section.block{padding:84px 0}
+    .section-head{text-align:center;max-width:700px;margin:0 auto 50px}
+    .eyebrow{color:var(--accent);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.82rem;margin-bottom:12px}
+    .section-head h2{font-size:clamp(1.9rem,3.8vw,2.7rem);margin-bottom:14px}
+    .section-head p{color:var(--muted);font-size:1.08rem}
+
+    /* services */
+    .grid{display:grid;gap:22px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .18s ease,border-color .2s ease}
+    .card:hover{transform:translateY(-4px);border-color:rgba(255,195,31,.45)}
+    .card .ico{font-size:34px;margin-bottom:14px}
+    .card h3{font-size:1.18rem;margin-bottom:8px}
+    .card p{color:var(--muted);font-size:.98rem}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--bg-soft)}
+    .shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+    .shot:hover img{transform:scale(1.08)}
+    .shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 14px;font-weight:600;font-size:.98rem;background:linear-gradient(transparent,rgba(6,9,18,.9));opacity:0;transform:translateY(8px);transition:.25s ease}
+    .shot:hover figcaption{opacity:1;transform:none}
+
+    /* about split */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+    .split-img{border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px rgba(0,0,0,.45)}
+    .split-img img{width:100%;height:100%;object-fit:cover}
+    .feat-list{display:grid;gap:14px;margin-top:8px}
+    .feat{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+    .feat .check{flex:none;width:26px;height:26px;border-radius:50%;background:rgba(46,230,166,.15);color:var(--ok);display:grid;place-items:center;font-weight:800}
+    .feat b{display:block;margin-bottom:2px}
+    .feat span{color:var(--muted);font-size:.94rem}
+
+    /* steps */
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:step}
+    .step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px}
+    .step .num{counter-increment:step;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-family:'Sora';font-weight:800;font-size:1.3rem;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#1a1300;margin-bottom:16px}
+    .step .num::after{content:counter(step)}
+    .step h3{font-size:1.15rem;margin-bottom:8px}
+    .step p{color:var(--muted);font-size:.97rem}
+
+    /* pricing */
+    .price-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .price{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;text-align:center}
+    .price.popular{border-color:var(--accent);box-shadow:0 20px 50px rgba(255,160,0,.18);position:relative}
+    .price.popular::before{content:"Populiariausia";position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#1a1300;font-size:.78rem;font-weight:700;padding:5px 14px;border-radius:999px}
+    .price h3{font-size:1.2rem;margin-bottom:6px}
+    .price .amt{font-family:'Sora';font-weight:800;font-size:2.4rem;margin:10px 0}
+    .price .amt small{font-size:1rem;color:var(--muted);font-weight:500}
+    .price ul{list-style:none;text-align:left;margin:18px 0 24px}
+    .price li{padding:8px 0;color:var(--muted);display:flex;gap:10px}
+    .price li::before{content:"✓";color:var(--ok);font-weight:800}
+    .price-note{text-align:center;color:var(--muted);margin-top:24px;font-size:.92rem}
+
+    /* CTA band */
+    .cta-band{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:28px;padding:54px;text-align:center;color:#1a1300}
+    .cta-band h2{font-size:clamp(1.7rem,3.5vw,2.6rem);margin-bottom:10px}
+    .cta-band p{font-size:1.1rem;opacity:.85;margin-bottom:26px;font-weight:500}
+    .cta-band .btn{background:#080c18;color:#fff;box-shadow:0 12px 30px rgba(0,0,0,.3)}
+    .cta-band .btn:hover{transform:translateY(-2px)}
+    .phone-big{font-family:'Sora';font-weight:800;font-size:clamp(1.8rem,5vw,2.6rem);display:inline-block;margin-top:6px}
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+    .contact-list{list-style:none;display:grid;gap:14px}
+    .contact-list li{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);padding:16px 20px;border-radius:14px}
+    .contact-list .ico{width:44px;height:44px;border-radius:12px;background:rgba(255,195,31,.12);display:grid;place-items:center;font-size:20px;flex:none}
+    .contact-list b{display:block}
+    .contact-list span{color:var(--muted);font-size:.92rem}
+
+    footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:.92rem}
+    .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+
+    .fab{position:fixed;right:18px;bottom:18px;z-index:60;display:none;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#1a1300;width:60px;height:60px;border-radius:50%;place-items:center;font-size:26px;box-shadow:0 12px 30px rgba(255,160,0,.5);animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,195,31,.5)}70%{box-shadow:0 0 0 18px rgba(255,195,31,0)}100%{box-shadow:0 0 0 0 rgba(255,195,31,0)}}
+
+    @media (max-width:900px){
+      .hero{min-height:auto;padding:64px 0}
+      .grid-3,.steps,.price-wrap,.contact-grid,.gallery,.split{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+      .split-img{order:-1}
+      .nav-links{position:absolute;top:72px;left:0;right:0;background:var(--bg-soft);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:10px 22px;display:none}
+      .nav-links.open{display:flex}
+      .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid var(--line)}
+      .nav-links .btn{margin:12px 0;width:100%;justify-content:center}
+      .burger{display:block}
+      .fab{display:grid}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#"><span class="mark">🛻</span> Tautvydas Veža</a>
+      <nav class="nav-links" id="menu">
+        <a href="#paslaugos">Paslaugos</a>
+        <a href="#darbai">Mūsų darbai</a>
+        <a href="#kaip">Kaip veikia</a>
+        <a href="#kainos">Kainos</a>
+        <a href="#kontaktai">Kontaktai</a>
+        <a class="btn btn-primary" href="tel:+37060000000">📞 Skambinti</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Meniu">☰</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <span class="badge"><span class="dot"></span> Dirbame 24/7 · visas Kaunas ir rajonas</span>
+        <h1>Sugedo automobilis? <span class="accent">Atvažiuosim per 30 min.</span></h1>
+        <p class="lead">Automobilių pervežimas tralu ir greita pagalba kelyje. Paskambink — saugiai pasiimsim tavo mašiną ten, kur reikia.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="tel:+37060000000">📞 +370 600 00000</a>
+          <a class="btn btn-ghost" href="#kainos">Pažiūrėti kainas</a>
+        </div>
+        <div class="hero-note">
+          <span>⚡ Greitas atvykimas</span>
+          <span>💶 Fiksuota kaina iš anksto</span>
+          <span>🛡️ Apdraustas pervežimas</span>
+        </div>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat"><b>~30 min.</b><span>Vidutinis atvykimas</span></div>
+        <div class="stat"><b>24/7</b><span>Dirbame visą parą</span></div>
+        <div class="stat"><b>500+</b><span>Pervežtų automobilių</span></div>
+        <div class="stat"><b>Kaunas</b><span>Miestas ir rajonas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASLAUGOS -->
+  <section class="block" id="paslaugos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Mūsų paslaugos</div>
+        <h2>Padedam ant kelio ir pervežam</h2>
+        <p>Nuo užvedimo iki pilno pervežimo tralu — viskas vienoje vietoje.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal"><div class="ico">🛻</div><h3>Automobilių tralavimas</h3><p>Sugedusios ar po avarijos esančios mašinos pervežimas į servisą, namus ar bet kurią vietą.</p></div>
+        <div class="card reveal"><div class="ico">🔋</div><h3>Akumuliatoriaus užvedimas</h3><p>Neužsiveda mašina? Atvažiuojam su laidais ir „prikabinam" tavo automobilį vietoje.</p></div>
+        <div class="card reveal"><div class="ico">🛞</div><h3>Rato keitimas</h3><p>Pradūrei padangą? Pakeisim atsarginiu arba pervešim iki vulkanizacijos.</p></div>
+        <div class="card reveal"><div class="ico">⛽</div><h3>Kuro pristatymas</h3><p>Pasibaigė kuras kelyje? Atvešim tiek, kad pasiektum artimiausią degalinę.</p></div>
+        <div class="card reveal"><div class="ico">🔑</div><h3>Durų atrakinimas</h3><p>Raktai liko viduje? Padėsim patekti į automobilį jo nepažeidžiant.</p></div>
+        <div class="card reveal"><div class="ico">🏍️</div><h3>Motociklų pervežimas</h3><p>Saugiai pervežam ir motociklus bei kitą lengvąją techniką.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIJA / MŪSŲ DARBAI -->
+  <section class="block" id="darbai" style="background:var(--bg-soft)">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Mūsų darbai</div>
+        <h2>Realios situacijos, kurias išsprendėm</h2>
+        <p>Po avarijos, griovyje ar tiesiog sugedusią — pervežam bet kokią mašiną.</p>
+      </div>
+      <div class="gallery">
+        <figure class="shot reveal"><img src="images/masina-5.jpg" alt="Sudaužytas automobilis pakrautas ant tralo" loading="lazy"><figcaption>Pakrovimas ant tralo</figcaption></figure>
+        <figure class="shot reveal"><img src="images/masina-1.jpg" alt="Automobilio priekio pažeidimai po avarijos" loading="lazy"><figcaption>Po priekinės avarijos</figcaption></figure>
+        <figure class="shot reveal"><img src="images/masina-3.jpg" alt="Automobilis nuvažiavęs nuo kelio" loading="lazy"><figcaption>Ištraukimas nuo kelio</figcaption></figure>
+        <figure class="shot reveal"><img src="images/masina-2.jpg" alt="Apvirtęs automobilis po susidūrimo" loading="lazy"><figcaption>Apvirtusios mašinos pakėlimas</figcaption></figure>
+        <figure class="shot reveal"><img src="images/masina-6.jpg" alt="Du susidūrę automobiliai" loading="lazy"><figcaption>Susidūrimas mieste</figcaption></figure>
+        <figure class="shot reveal"><img src="images/masina-4.jpg" alt="Pagalba kelyje naktį" loading="lazy"><figcaption>Pagalba kelyje naktį</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- KODĖL MES (split su nuotrauka) -->
+  <section class="block">
+    <div class="wrap split">
+      <div class="reveal">
+        <div class="eyebrow">Kodėl Tautvydas Veža</div>
+        <h2 style="font-size:clamp(1.8rem,3.6vw,2.5rem);margin-bottom:20px">Patikima pagalba, kai labiausiai reikia</h2>
+        <div class="feat-list">
+          <div class="feat"><div class="check">✓</div><div><b>Dirbame 24/7</b><span>Skambink bet kada — naktį, savaitgalį ar per šventes.</span></div></div>
+          <div class="feat"><div class="check">✓</div><div><b>Fiksuota kaina iš anksto</b><span>Kainą sužinai prieš atvykstant — be paslėptų mokesčių.</span></div></div>
+          <div class="feat"><div class="check">✓</div><div><b>Apdraustas pervežimas</b><span>Tavo automobilis saugus viso kelio metu.</span></div></div>
+          <div class="feat"><div class="check">✓</div><div><b>Patyręs vairuotojas</b><span>Tinkamai užkeliam ir įtvirtinam bet kokią mašiną.</span></div></div>
+        </div>
+      </div>
+      <div class="split-img reveal"><img src="images/hero-tralas.jpg" alt="Tautvydas Veža automobilių pervežimo tralas"></div>
+    </div>
+  </section>
+
+  <!-- KAIP VEIKIA -->
+  <section class="block" id="kaip" style="background:var(--bg-soft)">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Paprasta</div>
+        <h2>Kaip tai veikia</h2>
+        <p>Trys žingsniai — ir tavo mašina jau kelyje pas mus.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="num"></div><h3>Paskambini</h3><p>Pasakai, kur esi ir kas nutiko. Iškart pasakom kainą ir atvykimo laiką.</p></div>
+        <div class="step reveal"><div class="num"></div><h3>Atvažiuojam</h3><p>Tralas atvyksta vidutiniškai per 30 minučių bet kurioje Kauno vietoje.</p></div>
+        <div class="step reveal"><div class="num"></div><h3>Pervežam</h3><p>Saugiai užkeliam ir nuvežam automobilį ten, kur tau reikia.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KAINOS -->
+  <section class="block" id="kainos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Kainos</div>
+        <h2>Skaidrios kainos</h2>
+        <p>Tikslią kainą visada pasakom telefonu prieš atvykdami.</p>
+      </div>
+      <div class="price-wrap">
+        <div class="price reveal">
+          <h3>Mieste</h3>
+          <div class="amt">nuo 30€</div>
+          <ul><li>Pervežimas Kauno mieste</li><li>Iki 5 km atstumas</li><li>Atvykimas ~30 min.</li></ul>
+          <a class="btn btn-ghost" href="tel:+37060000000" style="width:100%;justify-content:center">Skambinti</a>
+        </div>
+        <div class="price popular reveal">
+          <h3>Kaunas + rajonas</h3>
+          <div class="amt">nuo 45€</div>
+          <ul><li>Pervežimas mieste ir rajone</li><li>Pagalba kelyje įskaičiuota</li><li>Pirmenybinis atvykimas</li></ul>
+          <a class="btn btn-primary" href="tel:+37060000000" style="width:100%;justify-content:center">📞 Skambinti dabar</a>
+        </div>
+        <div class="price reveal">
+          <h3>Tarpmiestinis</h3>
+          <div class="amt">nuo 0.80€ <small>/ km</small></div>
+          <ul><li>Pervežimas tarp miestų</li><li>Visa Lietuva</li><li>Kaina sutariama iš anksto</li></ul>
+          <a class="btn btn-ghost" href="tel:+37060000000" style="width:100%;justify-content:center">Skambinti</a>
+        </div>
+      </div>
+      <p class="price-note">* Kainos orientacinės. Galutinė kaina priklauso nuo atstumo ir automobilio. Tikslią sumą pasakysim telefonu.</p>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="block">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Reikia tralo dabar?</h2>
+        <p>Skambink — pakelsim ragelį bet kuriuo paros metu.</p>
+        <a class="btn" href="tel:+37060000000">📞 Skambinti</a>
+        <div><a class="phone-big" href="tel:+37060000000">+370 600 00000</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKTAI -->
+  <section class="block" id="kontaktai" style="background:var(--bg-soft)">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="eyebrow">Kontaktai</div>
+          <h2 style="font-size:clamp(1.8rem,3.6vw,2.4rem);margin-bottom:14px">Susisiek su mumis</h2>
+          <p style="color:var(--muted);margin-bottom:26px">Dirbame visą parą, 7 dienas per savaitę. Aptarnaujame Kauną ir aplinkinius rajonus.</p>
+          <a class="btn btn-primary" href="tel:+37060000000">📞 +370 600 00000</a>
+        </div>
+        <ul class="contact-list reveal">
+          <li><div class="ico">📞</div><div><b><a href="tel:+37060000000">+370 600 00000</a></b><span>Skambink bet kada — 24/7</span></div></li>
+          <li><div class="ico">💬</div><div><b><a href="https://wa.me/37060000000" target="_blank" rel="noopener">WhatsApp / SMS</a></b><span>Parašyk vietą ir kas nutiko</span></div></li>
+          <li><div class="ico">📍</div><div><b>Kaunas ir rajonas</b><span>Atvykstam visoje teritorijoje</span></div></li>
+          <li><div class="ico">🕐</div><div><b>24 val. / 7 d.</b><span>Naktimis, savaitgaliais, švenčių dienomis</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap foot">
+      <div class="logo" style="font-size:1.2rem"><span class="mark" style="width:30px;height:30px;font-size:16px">🛻</span> Tautvydas Veža</div>
+      <div>© <span id="year"></span> Tautvydas Veža — Automobilių pervežimas Kaune. Visos teisės saugomos.</div>
+    </div>
+  </footer>
+
+  <a class="fab" href="tel:+37060000000" aria-label="Skambinti">📞</a>
+
+  <script>
+    const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+    burger.addEventListener('click',()=>menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+    document.getElementById('year').textContent=new Date().getFullYear();
+    // reveal-on-scroll
+    const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';io.observe(el)});
+  </script>
+</body>
+</html>
